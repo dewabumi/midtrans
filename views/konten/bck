@@ -1,0 +1,46 @@
+<?php } else if($this->uri->segment(2)=='upload_bukti' || $this->uri->segment(2)=='bukti_tf'){ ?>
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4" src="<?php echo base_url('assets/images/logo2.png');?>" alt="" width="72" height="72">
+    <h2>Upload Bukti Transfer mu disini</h2>
+    <p class="lead">Silakan Upload bukti transfer anda dengan memasukan nomor Invoice yang anda dapat dan bukti transfer anda.</p>
+  </div>
+            <?php echo form_open_multipart('Welcome/bukti_tf');?>
+            <div class="input-group">
+            <div class="form-group">
+              <label for="NamaTenant">Nomor Invoice</label>
+              <input id="nama_nama" type="text" name="noinv" class="form-control" aria-describedby="nama_pemilikBrandHelp" autocomplete="on" placeholder="Masukan Nomor Invoice Anda">
+            <?php if(form_error('noinv'))
+            {
+              echo '<small id="pekerjaanHelp" class="form-text text-danger">'.form_error('noinv').'</small>';
+            } else {
+              echo '<small id="pekerjaanHelp" class="form-text text-muted">Nomor Invoice Anda.</small>';
+            }?>               
+            </div>
+            </div> 
+            
+            <p>Bukti Transfer</p>
+            <div class="custom-file mb-3">
+              <input type="file" name="bukti_transfer" class="custom-file-input" id="customFile">
+              <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+            <span><?php echo $error;?>
+              <div class="input-group-append">
+                <button type="submit" onclick="show()" class="btn btn-success">submit</button>
+              </div>              
+  <?php echo form_close();?>  
+
+<?php } else { ?>
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4" src="<?php echo base_url('assets/images/logo2.png');?>" alt="" width="72" height="72">
+    <?php if($this->uri->segment(2) == 'sukses_upload') {
+        echo '<h2>Terima Kasih Sudah Melakukan Pembayaran</h2>';
+        echo '<p class="lead">Tiket Anda akan kami kirimkan melalui email yang telah anda daftarkan.</p>';
+        echo '<p class="lead">Jika ingin membeli tiket lagi silakan beli <a href="'. base_url("Welcome/list_event").'">disini</a></p>';
+    } else {
+      echo '<h2>Terima Kasih Sudah Membeli Tiket</h2>';
+      echo '<p class="lead">Silakan cek Email anda untuk info lebih lanjut</p>';
+      echo '<p class="lead">Jika ingin membeli tiket lagi silakan beli <a href="'. base_url("Welcome/list_event") .'">disini</a></p>';
+    }?>
+    
+  </div>
+<?php } ?>
